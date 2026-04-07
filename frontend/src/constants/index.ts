@@ -5,12 +5,6 @@ export const How = [
     { title:"Get AI Insights", subtitle:"Receive match scores, missing skills, and clear improvement tips instantly.", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774718396/analytics-svgrepo-com_1_urv0fo.svg" }
 ]
 
-export const features = [
-    {title:"Accurate Match Analysis", subtitle:"Get precise insights on how well your resume aligns with job requirements."},
-    {title:"Clear Improvement Tips", subtitle:"Receive simple, actionable suggestions to strengthen your resume instantly."},
-    {title:"Fast & Reliable Results", subtitle:"Analyze resumes in seconds with consistent and dependable feedback."},
-    {title:"Built for Real Outcomes", subtitle:"Designed to help you stand out and improve your chances in real job applications."}
-]
 
 export const testimony = [
     {name:"David A.", role:"Job Seeker", text:"The insights were clear and helped me fix gaps I didn’t even notice before.", pic:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774732602/image1_syuscv.avif" },
@@ -32,6 +26,13 @@ export const slide = [
     {id:"5", text:"PRIVACY POLICIES"},
     {id:"5", text:"CONTRACTS"},
     {id:"6", text:"LEGAL DOCS"}
+]
+
+export const features = [
+    {id:"01", title:"AI Simplification", subtitle:"Gemini powered. Turns complex legalese into plain, everyday English instantly. ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775563230/brain-svgrepo-com_1_mbg3ge.svg"},
+    {id:"02", title:"Red Flag Detection", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775564177/flag-2-svgrepo-com_dannid.svg", subtitle:"Auto-renewal, hidden fees, liability waivers — flagged before you sign anything. "},
+    {id:"03", title:"PDF & Text Input", subtitle:"Upload a PDF or paste text directly. Works with any format, any length. ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775563230/file-text-svgrepo-com_edvau7.svg "},
+    {id:"04", title:"Tone Control", subtitle:"Simple, Detailed, or ELI5 — you choose how deep the explanation goes. ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775563230/adjustments-profil-account-settings-preferences-svgrepo-com_qkykub.svg "}
 ]
 
 export const sidebarLinks2 = [

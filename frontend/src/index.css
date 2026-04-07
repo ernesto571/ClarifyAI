@@ -89,3 +89,16 @@
   font-size: 5rem;
   color: #0d0d0d
 }
+
+.title {
+  font-size: 3.2rem;
+  color: #0d0d0d;
+  font-weight: 600;
+  line-height: 3.8rem;
+}
+
+.text-small {
+  font-size: 0.85rem;
+  color:  #6b7280;
+  font-weight: 500;
+}
