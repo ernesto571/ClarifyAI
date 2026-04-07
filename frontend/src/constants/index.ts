@@ -47,6 +47,12 @@ export const faqs = [
     {id: "4", question: "How accurate is the AI?", answer: "Very accurate for summarization and red flag detection. Always verify with a lawyer for final decisions."},
 ]
 
+export const footerLinks = [
+    {name:"PRIVACY"},
+    {name:"TERMS"},
+    {name:"CONTACT"}
+]
+
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },
     { id:"#how-it-works", title:"How It Works" },

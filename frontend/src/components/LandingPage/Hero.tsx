@@ -5,7 +5,7 @@ export default function Hero(){
     return(
         <section className="bg-primary h-screen">
             <div className="grid grid-cols-2">
-                <section className="mt-[10rem] w-[80%] mx-auto font-cabinet font-bold">
+                <section className="mt-[5rem] w-[80%] mx-auto font-cabinet font-bold">
                     <div className="flex gap-2 bg-black text-primary py-2 justify-center text-[0.8rem] tracking-wide max-w-[38%] rounded-md"> 
                         <img className="w-[15px] flex items-center " src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775552386/diamond-mark-3-svgrepo-com_dgvrj1.svg" alt="icon" />
                         <p>100% FREE • AI-POWERED</p>
@@ -35,7 +35,7 @@ export default function Hero(){
                 </section>
 
                 <section className="border-l-2 border-black">
-                    <img src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775521808/hero-pic_pfkamt.png" alt="bg-hero" className=" lg:pt-16  h-screen w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775521808/hero-pic_pfkamt.png" alt="bg-hero" className="  h-screen w-full object-cover" />
                 </section>
             </div>
         </section>
