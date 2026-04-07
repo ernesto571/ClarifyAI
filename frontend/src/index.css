@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: auto;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 300ms ease-in-out, left 300ms ease-in-out, right 300ms ease-in-out;
+}
+
+/* Hover: grow from left → right */
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+
+/* Unhover: shrink out to the right */
+.nav-link:not(:hover)::after {
+  width: 0;
+  left: auto;
+  right: 0;
+}
+
+/* Active: always underlined, overrides unhover */
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+
+.main {
+  grid-column: span 6;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  height: 100%;
+}
+
+.sidebar {
+  grid-column: span 1;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.bg-primary {
+    background-color: #ffe034;
+}
+
+.bg-sec {
+  background-color: #ff4d4d;
+}
+
+.text-primary {
+  color: #ffe034;
+}
+
+.primary-text {
+  font-size: 5rem;
+  color: #0d0d0d
+}
