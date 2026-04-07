@@ -40,6 +40,13 @@ export const reviews = [
     {id: "3", name: "Nadia Reyes", initial: "NR", review: "ELI5 mode is genius. I finally understand what my employment contract actually says.", status: "Marketing Manager", color:"bg-[#b8f5e4]"},
 ]
 
+export const faqs = [
+    {id: "1", question: "Is ClarifyAI really free?", answer: "Yes — 100% free, no credit card. Sign up only if you want to save your document history."},
+    {id: "2", question: "Is my document safe?", answer: "Documents are never stored unless you're signed in. Processed securely and discarded immediately."},
+    {id: "3", question: "What documents work best?", answer: "Contracts, leases, NDAs, employment agreements, TOS, privacy policies — anything text-based."},
+    {id: "4", question: "How accurate is the AI?", answer: "Very accurate for summarization and red flag detection. Always verify with a lawyer for final decisions."},
+]
+
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },
     { id:"#how-it-works", title:"How It Works" },

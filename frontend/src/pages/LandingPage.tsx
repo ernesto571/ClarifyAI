@@ -1,3 +1,4 @@
+import FAQ from "../components/LandingPage/FAQ";
 import Features from "../components/LandingPage/Features";
 import Hero from "../components/LandingPage/Hero";
 import HowItWorks from "../components/LandingPage/HowItWorks";
@@ -13,6 +14,7 @@ export default function LandingPage(){
             <Features />
             <HowItWorks />
             <Review />
+            <FAQ />
         </section>
     )
 }

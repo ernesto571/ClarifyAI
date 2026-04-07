@@ -5,7 +5,7 @@ export default function Review (){
 
     return(
         <section className="bg-[#f7f7f7]">
-            <main className="py-14 page-width">
+            <main className="py-16 page-width">
                 <h1 className="title font-cabinet ">People actually love it.</h1>
 
                 <div className="grid grid-cols-3 mt-10 gap-8">
