@@ -34,6 +34,12 @@ export const how = [
     {id:"03 ", title:"Get Instant Clarity", subtitle:" See your full breakdown — summary, key points, red flags, and section-by-section explanations.  ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775568143/img-3_jvt4b4.png "}
 ]
 
+export const reviews = [
+    {id: "1", name: "Amara Johnson", initial: "AJ", review: "Flagged a sketchy auto-renewal clause before I signed my lease. Saved me months of headache.", status: "Grad Student", color:"bg-primary"},
+    {id: "2", name: "David Kim", initial: "DK", review: "My first stop before signing any client contract now. Saved me thousands in bad deals.", status: "Freelance Designer", color:"bg-[#c7d7ff]"},
+    {id: "3", name: "Nadia Reyes", initial: "NR", review: "ELI5 mode is genius. I finally understand what my employment contract actually says.", status: "Marketing Manager", color:"bg-[#b8f5e4]"},
+]
+
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },
     { id:"#how-it-works", title:"How It Works" },

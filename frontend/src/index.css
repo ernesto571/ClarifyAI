@@ -109,3 +109,8 @@
   color:  #6b7280;
   font-weight: 500;
 }
+
+.page-width {
+  width: 90%;
+  margin: auto;
+}
