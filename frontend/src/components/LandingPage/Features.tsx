@@ -7,7 +7,7 @@ export default function Features(){
             <div className="w-[90%] mx-auto mt-24">
                 {/* heading */}
                 <span className="flex justify-between">
-                    <h1 className="title font-cabinet w-[30%] ">Everything you need. Nothing you don't.</h1>
+                    <h1 className="title text-dark font-cabinet w-[30%] ">Everything you need. Nothing you don't.</h1>
                     <p className="w-[25%] font-satoshi text-gray-500 text-[0.9rem] font-semibold flex items-end ">Four powerful features that make understanding any document actually posssible.</p>
                 </span>
 

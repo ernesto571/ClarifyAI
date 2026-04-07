@@ -81,6 +81,10 @@
   background-color: #ff4d4d;
 }
 
+.bg-tet {
+  background-color: #0d0d0d;
+}
+
 .text-primary {
   color: #ffe034;
 }
@@ -92,9 +96,12 @@
 
 .title {
   font-size: 3.2rem;
-  color: #0d0d0d;
   font-weight: 600;
   line-height: 3.8rem;
+}
+
+.text-dark {
+  color: #0d0d0d;
 }
 
 .text-small {

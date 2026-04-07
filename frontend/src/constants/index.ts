@@ -1,11 +1,4 @@
 
-export const How = [
-    { title:"Upload Your Resume", subtitle:"Upload your resume in seconds and prepare it for analysis.", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774718396/upload-document-note-svgrepo-com_qobgpi.svg" },
-    { title:"Paste Job Description", subtitle:"Add the job you’re applying for to compare requirements.", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774718396/clipboard-svgrepo-com_d8wgzo.svg" },
-    { title:"Get AI Insights", subtitle:"Receive match scores, missing skills, and clear improvement tips instantly.", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774718396/analytics-svgrepo-com_1_urv0fo.svg" }
-]
-
-
 export const testimony = [
     {name:"David A.", role:"Job Seeker", text:"The insights were clear and helped me fix gaps I didn’t even notice before.", pic:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774732602/image1_syuscv.avif" },
     {name:"Sarah M.", role:"Graduate", text:"I was able to improve my resume quickly and feel more confident applying for jobs.", pic:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1774732601/fmale_n7ektl.avif"},
@@ -33,6 +26,12 @@ export const features = [
     {id:"02", title:"Red Flag Detection", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775564177/flag-2-svgrepo-com_dannid.svg", subtitle:"Auto-renewal, hidden fees, liability waivers — flagged before you sign anything. "},
     {id:"03", title:"PDF & Text Input", subtitle:"Upload a PDF or paste text directly. Works with any format, any length. ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775563230/file-text-svgrepo-com_edvau7.svg "},
     {id:"04", title:"Tone Control", subtitle:"Simple, Detailed, or ELI5 — you choose how deep the explanation goes. ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775563230/adjustments-profil-account-settings-preferences-svgrepo-com_qkykub.svg "}
+]
+
+export const how = [
+    {id:"01 ", title:"Paste or Upload ", subtitle:" Drop in a PDF or paste your document text. Contracts, leases, TOS — anything works.", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775568143/img-1_pi0cte.png "},
+    {id:"02", title:"Pick Your Tone", subtitle:" Choose Simple for quick answers, Detailed for full context, or ELI5 for total clarity.  ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775568143/img-2_ymtwvw.png "},
+    {id:"03 ", title:"Get Instant Clarity", subtitle:" See your full breakdown — summary, key points, red flags, and section-by-section explanations.  ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775568143/img-3_jvt4b4.png "}
 ]
 
 export const sidebarLinks2 = [
