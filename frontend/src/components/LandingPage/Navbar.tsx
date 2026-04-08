@@ -8,16 +8,16 @@ export default function Navbar(){
 
     return(
         <nav className=" top-0 left-0  w-full z-30 transition-all duration-300
-        bg-primary border-b-[3px] border-gray-900 py-4
+        bg-primary border-b-[3px] border-gray-900 py-2 md:py-4
         ">
             <main  className="flex justify-between w-[98%] md:w-[90%] mx-auto items-center">
                 <Link to="/" >
-                    <img src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775521808/clarifyai_logo_drekht.png" alt="logo" className="w-[9rem] font-thin " />
+                    <img src="https://res.cloudinary.com/dsljbxkfy/image/upload/v1775521808/clarifyai_logo_drekht.png" alt="logo" className="w-[7rem] md:w-[9rem] font-thin " />
                 </Link>
 
                 <div className="flex gap-8 text-gray-800 font-cabinent font-bold text-[0.9rem] tracking-wide items-center">
                     {/* links */}
-                    <span className="flex gap-8">
+                    <span className="hidden md:flex gap-8">
                         {navLinks.map((link) => {
                             const isActive = location.hash === link.id;
                             return (

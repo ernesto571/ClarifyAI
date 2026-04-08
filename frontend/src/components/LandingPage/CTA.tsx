@@ -1,11 +1,31 @@
 import { ArrowRight } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA (){
+    const ref = useRef<HTMLElement>(null);
+
+    useGSAP(() => {
+        gsap.from(ref.current, {
+          opacity: 0,
+          yPercent: 30,
+          duration: 1,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 80%",
+          },
+        });
+    }, { scope: ref });
 
     return(
         <section className="border-t-2 border-black py-16 bg-[#2d6bff]">
-            <main className="flex flex-col gap-5 justify-center items-center text-center">
-                <div className="flex flex-col text-[4.2rem] leading-[4.2rem] font-cabinet font-bold text-white text-center">
+            <main ref={ref} className="flex flex-col gap-5 justify-center items-center text-center">
+                <div className="flex flex-col text-[3.2rem] lg:text-[4.2rem] leading-[4.2rem] font-cabinet font-bold text-white text-center">
                     <h1 >Stop guessing.</h1>
                     <h1>Start knowing.</h1>
                 </div>

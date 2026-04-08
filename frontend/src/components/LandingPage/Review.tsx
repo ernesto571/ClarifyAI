@@ -1,16 +1,36 @@
 import { Star } from "lucide-react";
 import { reviews } from "../../constants";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Review (){
+    const ref = useRef<HTMLElement>(null);
+
+    useGSAP(() => {
+        gsap.from(ref.current, {
+          opacity: 0,
+          yPercent: 30,
+          duration: 1,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 80%",
+          },
+        });
+    }, { scope: ref });
 
     return(
         <section className="bg-[#f7f7f7]">
-            <main className="py-16 page-width">
-                <h1 className="title font-cabinet ">People actually love it.</h1>
+            <main ref={ref} className="py-16 page-width">
+                <h1 className="title flex text-center font-cabinet ">People actually love it.</h1>
 
-                <div className="grid grid-cols-3 mt-10 gap-8">
+                <div className="grid  lg:grid-cols-3 mt-10 gap-5 lg:gap-8">
                     { reviews.map( (r) => (
-                        <div key={r.id} className="flex flex-col gap-y-5 border-[3px] border-black rounded-2xl py-6 px-8">
+                        <div key={r.id} className="flex flex-col gap-3 md:gap-y-5 border-[3px] border-black rounded-2xl py-6 px-4 lg:px-8">
                             <span className="flex gap-1">
                                 <Star className="text-[#ff4d4d] fill-[#ff4d4d] size-4 " />
                                 <Star className="text-[#ff4d4d] fill-[#ff4d4d] size-4 " />

@@ -90,14 +90,14 @@
 }
 
 .primary-text {
-  font-size: 5rem;
+  font-size: 3rem;
   color: #0d0d0d
 }
 
 .title {
-  font-size: 3.2rem;
+  font-size: 2.3rem;
   font-weight: 600;
-  line-height: 3.8rem;
+  line-height: 3rem;
 }
 
 .text-dark {
@@ -113,4 +113,23 @@
 .page-width {
   width: 90%;
   margin: auto;
+}
+
+@media (min-width: 768px) {
+  .primary-text {
+    font-size: 4.3rem;
+  }
+  .title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .primary-text {
+    font-size: 5rem;
+  }
+  .title {
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+  }
 }

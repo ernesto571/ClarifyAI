@@ -7,7 +7,7 @@ export default function Footer (){
             <div className="flex justify-between page-width items-center">
                 <h1 className="font-cabinet text-primary font-bold  text-[1.3rem]">ClarifyAI</h1>
 
-                <span className="flex gap-5">
+                <span className="hidden md:flex gap-5">
                     { footerLinks.map( (f) => (
                         <a href="#" key={f.name} className="text-gray-500 text-[0.8rem] text-bold font-satoshi hover:text-white">{f.name}</a>
                     )) }
