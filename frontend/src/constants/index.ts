@@ -53,6 +53,19 @@ export const footerLinks = [
     {name:"CONTACT"}
 ]
 
+export const info = [
+    {id:" 1", text:" AI-powered plain English breakdown "},
+    {id:" 2", text:"Red flag detection before you sign "},
+    {id:" 3", text:"PDF upload + text paste support  "},
+    {id:" 4", text:"Save and revisit your document history  "},
+    {id:" 5", text:"100% free — no credit card needed  "}
+]
+
+export const social = [
+    {name:"Google ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775685859/google-color-svgrepo-com_howgro.svg"},
+    {name:"Github ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775685810/github-142-svgrepo-com_ahi8yu.svg"}
+]
+
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },
     { id:"#how-it-works", title:"How It Works" },

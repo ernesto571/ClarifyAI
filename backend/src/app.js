@@ -1,0 +1,34 @@
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "../config/auth.js";
+import userRoutes from "../routes/user.route.js";
+import "dotenv/config";
+
+const app = express();
+
+app.use(cors({
+  origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+  credentials: true,
+}));
+
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(morgan("dev"));
+
+// ✅ Step 1: Better Auth FIRST — before anything else touches /api/auth
+app.all("/api/auth/*splat", toNodeHandler(auth));
+
+// ✅ Step 2: JSON middleware after BA
+app.use(express.json());
+
+// ✅ Step 3: Your custom routes after BA
+app.use("/api/user", userRoutes);
+
+app.use((req, res, next) => {
+  console.log(`📨 ${req.method} ${req.path}`);
+  next();
+});
+
+export default app;

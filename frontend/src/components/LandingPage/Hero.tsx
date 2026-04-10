@@ -2,10 +2,13 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(SplitText);
 
 export default function Hero(){
+
+    const navigate = useNavigate()
 
     useGSAP(() => {
         const tl = gsap.timeline({ delay: 0.5 });
@@ -82,7 +85,7 @@ export default function Hero(){
 
                     {/* buttons */}
                     <div id="hero-btn" className="mt-6 flex gap-6 ">
-                        <button className="bg-[#0d0d0d] tracking-wide rounded-lg hover:bg-[#0d0d0d]/95 transition  text-primary flex py-4 hover:-translate-y-[1px] px-6">Try it Free <ArrowRight className="flex items-center size-6 pl-2 "/></button>
+                        <button onClick={() => (navigate("/dashboard"))} className="bg-[#0d0d0d] tracking-wide rounded-lg hover:bg-[#0d0d0d]/95 transition  text-primary flex py-4 hover:-translate-y-[1px] px-6">Try it Free <ArrowRight className="flex items-center size-6 pl-2 "/></button>
 
                         <a href="#how-it-works" className="border-2 border-[#0d0d0d] tracking-wide rounded-lg transition hover:cursor-pointer  text-[#0d0d0d] flex py-4 hover:-translate-y-[1px] px-6">See How <ArrowDown className="flex items-center size-6 pl-2 "/></a>
                     </div>

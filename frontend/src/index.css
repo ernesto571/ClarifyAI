@@ -85,12 +85,21 @@
   background-color: #0d0d0d;
 }
 
+.bg-tet-2 {
+  background-color: #f3f3eb;
+}
+
 .text-primary {
   color: #ffe034;
 }
 
 .primary-text {
   font-size: 3rem;
+  color: #0d0d0d
+}
+
+.signup-hero {
+  font-size: 4rem;
   color: #0d0d0d
 }
 
@@ -113,6 +122,44 @@
 .page-width {
   width: 90%;
   margin: auto;
+}
+
+.label {
+  font-weight: 600;
+  color : #374151 ;
+  font-size: 0.8rem ;
+  letter-spacing: 0.025em;
+}
+
+.input {
+  padding-top: 0.75rem /* 12px */;
+  padding-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem ;
+  font-weight: 500;
+  padding-left: 1.25rem /* 20px */;
+  padding-right: 1.25rem 
+}
+
+.oauth {
+  color: #111827 ;
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  gap: 0.5rem;
+  padding-top: 0.5rem /* 8px */;
+  padding-bottom: 0.5rem /* 8px */;
+  background-color: #f3f3eb;
+  border-width: 1px;
+  border-radius: 0.5rem;
+}
+
+:disabled.oauth {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {

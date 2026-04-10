@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { navLinks } from "../../constants";
 
 export default function Navbar(){
 
     const location = useLocation();
+    const navigate = useNavigate()
 
     return(
         <nav className=" top-0 left-0  w-full z-30 transition-all duration-300
@@ -31,7 +32,7 @@ export default function Navbar(){
                     </span>
 
                     {/* login button */}
-                    <button className="md:px-6 text-sm px-4 py-2  transition-colors   rounded-md bg-black hover:bg-gray-900 text-[#ffe034]">SIGN IN</button>
+                    <button onClick={() => (navigate("/login"))} className="md:px-6 text-sm px-4 py-2  transition-colors   rounded-md bg-black hover:bg-gray-900 text-[#ffe034]">SIGN IN</button>
                 </div>
             </main>
         </nav>
