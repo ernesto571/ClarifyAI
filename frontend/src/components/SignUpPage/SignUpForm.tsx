@@ -15,7 +15,7 @@ export default function SignUpForm() {
       clearError();
     }
   }, [error]);
-
+ 
   useEffect(() => {
     if (user) {
       navigate("/dashboard")

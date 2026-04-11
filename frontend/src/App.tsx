@@ -9,9 +9,10 @@ import AuthCallback from "./pages/AuthPages/AuthCallback";
 import AuthListener from "./hooks/AuthListener";
 import Dashboard from "./pages/DashboardPages/Dashboard";
 import { useAuthStore } from "./store/AuthStore";
+import Topbar from "./components/Dashboard/Topbar";
 
 function App() {
-  const { isLoading } = useAuthStore();
+  const { isLoading, user } = useAuthStore();
 
   if (isLoading) {
     return (
@@ -25,11 +26,11 @@ function App() {
     <>
       <AuthListener />
       <Routes>
-        <Route path="/" element={<><Navbar /><LandingPage /></>} />
-        <Route path="/signup" element={<><Navbar /><SignUpPage /></>} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <><Navbar /><LandingPage /></>} />
+        <Route path="/signup" element={user ? <Navigate to="/dashboard" replace /> : <><Navbar /><SignUpPage /></>} />
+        <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<><Topbar /><Dashboard /></>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster

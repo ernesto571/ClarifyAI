@@ -61,9 +61,21 @@ export const info = [
     {id:" 5", text:"100% free — no credit card needed  "}
 ]
 
-export const social = [
-    {name:"Google ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775685859/google-color-svgrepo-com_howgro.svg"},
-    {name:"Github ", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775685810/github-142-svgrepo-com_ahi8yu.svg"}
+export const topbarLinks = [
+    {id:"1", label:"ANALYZE", to:"/dashboard" },
+    {id:"2", label:"HISTORY", to:"/history" },
+    {id:"3", label:"PROFILE", to:"/profile" }
+]
+
+export const toolLinks = [
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/magnifying-glass-search-svgrepo-com_psybue.svg", label:"Analyze Doc" , to: "/dashboard"},
+    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/card-index-dividers-svgrepo-com_mzdrvs.svg", label:"My History", to: "/history"},
+    {id:"3", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/document-file-file-format-file-type-folder-format-svgrepo-com_eviumr.svg", label:"Saved Docs", to: "/my-documents"}
+]
+
+export const accountLinks = [
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/profile-user-svgrepo-com_albgc9.svg", label:"Profile" , to: "/profile"},
+    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/door-svgrepo-com_nynfte.svg", label:" Log Out", to: "/history"},
 ]
 
 export const sidebarLinks2 = [

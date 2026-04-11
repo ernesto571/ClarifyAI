@@ -6,6 +6,8 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "../config/auth.js";
 import userRoutes from "../routes/user.route.js";
 import "dotenv/config";
+import { analyzeDoc } from "../controllers/Analyze.controller.js";
+import { uploadDocument } from "../config/cloudinary.config.js";
 
 const app = express();
 
@@ -17,14 +19,21 @@ app.use(cors({
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(morgan("dev"));
 
-// ✅ Step 1: Better Auth FIRST — before anything else touches /api/auth
+// Better Auth FIRST — before anything else touches /api/auth
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
-// ✅ Step 2: JSON middleware after BA
 app.use(express.json());
 
-// ✅ Step 3: Your custom routes after BA
 app.use("/api/user", userRoutes);
+app.use("/api/analyze", (req, res, next) => {
+  uploadDocument.single("file")(req, res, (err) => {  // ← also change "resume" to "file" to match frontend
+    if (err) {
+      console.error("🔴 Multer error:", err.message);
+      return res.status(400).json({ message: err.message });
+    }
+    next();
+  });
+}, analyzeDoc);
 
 app.use((req, res, next) => {
   console.log(`📨 ${req.method} ${req.path}`);

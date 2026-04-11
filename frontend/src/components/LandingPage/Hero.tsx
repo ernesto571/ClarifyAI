@@ -11,7 +11,7 @@ export default function Hero(){
     const navigate = useNavigate()
 
     useGSAP(() => {
-        const tl = gsap.timeline({ delay: 0.5 });
+        const tl = gsap.timeline({ delay: 0.3 });
         const heroSplit = new SplitText("#hero-title", { type: "chars, words" });
         const heroSplit2 = new SplitText("#hero-title-2", { type: "chars, words" });
         const subtitleSplit = new SplitText("#hero-subtitle", { type: "lines" });
@@ -20,33 +20,33 @@ export default function Hero(){
         tl.from(heroSplit.chars, {
             opacity: 0,
             y: 20,
-            duration: 0.6,
+            duration: 0.3,
             ease: "back.out",
             stagger: 0.05, // Faster stagger so buttons show sooner
         })
         tl.from("#text-1", {
             opacity: 0,
             y: 10,
-            duration : 0.6,
+            duration : 0.3,
             stagger: 0.05
         })
         tl.from(heroSplit2.chars, {
             opacity: 0,
             y: 20,
-            duration: 0.6,
+            duration: 0.3,
             ease: "back.out",
             stagger: 0.05, // Faster stagger so buttons show sooner
         })
         tl.from("#text-2", {
             opacity: 0,
             y: 10,
-            duration : 0.6,
+            duration : 0.3,
             stagger: 0.05
         })
         .from(subtitleSplit.lines, {
             opacity: 0,
             y: 10,
-            duration: 0.8,
+            duration: 0.5,
             stagger: 0.1,
         });
         tl.from("#hero-btn", {
