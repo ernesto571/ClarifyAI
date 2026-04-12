@@ -214,6 +214,19 @@ mark.notable {
   top: 0;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(6);
+  height: 92vh;
+}
+
+.main {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
 @media (min-width: 768px) {
   .primary-text {
     font-size: 4.3rem;

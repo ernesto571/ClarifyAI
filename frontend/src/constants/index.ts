@@ -62,20 +62,20 @@ export const info = [
 ]
 
 export const topbarLinks = [
-    {id:"1", label:"ANALYZE", to:"/dashboard" },
-    {id:"2", label:"HISTORY", to:"/history" },
-    {id:"3", label:"PROFILE", to:"/profile" }
+    {id:"1", label:"ANALYZE", to:"/dashboard", end: true },
+    {id:"2", label:"HISTORY", to:"/dashboard/history" },
+    {id:"3", label:"PROFILE", to:"/dashboard/profile" }
 ]
 
 export const toolLinks = [
-    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/magnifying-glass-search-svgrepo-com_psybue.svg", label:"Analyze Doc" , to: "/dashboard"},
-    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/card-index-dividers-svgrepo-com_mzdrvs.svg", label:"My History", to: "/history"},
-    {id:"3", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/document-file-file-format-file-type-folder-format-svgrepo-com_eviumr.svg", label:"Saved Docs", to: "/my-documents"}
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/magnifying-glass-search-svgrepo-com_psybue.svg", label:"Analyze Doc" , to: "/dashboard", end: true},
+    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/card-index-dividers-svgrepo-com_mzdrvs.svg", label:"My History", to: "/dashboard/history"},
+    {id:"3", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/document-file-file-format-file-type-folder-format-svgrepo-com_eviumr.svg", label:"Saved Docs", to: "/dashboard/my-documents"}
 ]
 
 export const accountLinks = [
-    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/profile-user-svgrepo-com_albgc9.svg", label:"Profile" , to: "/profile"},
-    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/door-svgrepo-com_nynfte.svg", label:" Log Out", to: "/history"},
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/profile-user-svgrepo-com_albgc9.svg", label:"Profile" , to: "/dashboard/profile", end: true},
+    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/door-svgrepo-com_nynfte.svg", label:" Log Out", to: "/log-out"},
 ]
 
 export const contractIcon = (h:string) => {

@@ -19,7 +19,7 @@ export default function Sidebar (){
                 <h3 className="text-[0.75rem] text-gray-400 font-cabinet pl-3 font-semibold">TOOLS</h3>
                 <div className="my-2 flex flex-col gap-2">
                     { toolLinks.map( (t) => (
-                        <NavLink to={t.to} key={t.id} className={({ isActive }) => `flex gap-2 w-full   py-2  text-[0.85rem]
+                        <NavLink to={t.to} end={t.end} key={t.id} className={({ isActive }) => `flex gap-2 w-full   py-2  text-[0.85rem]
                         ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5"}`}>
                             <img src={t.icon} alt="icon" className="w-[17px] "/>
                             <p> {t.label}</p>
@@ -31,7 +31,7 @@ export default function Sidebar (){
                     <h3 className="text-[0.75rem] text-gray-400 font-cabinet pl-3 font-semibold">ACCOUNT</h3>
                     <div className="my-2 flex flex-col gap-1.5">
                         { accountLinks.map( (t) => (
-                            <NavLink to={t.to} key={t.id} className={({ isActive }) => `flex gap-2 w-full py-2  text-[0.85rem]
+                            <NavLink to={t.to} key={t.id} end={t.end} className={({ isActive }) => `flex gap-2 w-full py-2  text-[0.85rem]
                             ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5"}`}>
                                 <img src={t.icon} alt="icon" className="w-[17px] "/>
                                 <p> {t.label}</p>

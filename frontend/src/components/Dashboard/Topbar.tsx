@@ -20,7 +20,7 @@ export default function Topbar (){
 
                 <div className="flex bg-[#1e1e1e] gap-3 rounded-lg py-1 items-center px-1">
                     { topbarLinks.map( (t) => (
-                        <NavLink key={t.to} to={t.to} className={({ isActive }) => `  px-4 py-1.5 tracking-wide text-[0.8rem]
+                        <NavLink key={t.to} to={t.to} end={t.end} className={({ isActive }) => `  px-4 py-1.5 tracking-wide text-[0.8rem]
                             ${isActive ? "text-gray-800 font-bold  bg-primary rounded-lg" : "text-gray-400"}`}>
                         {t.label}
                         </NavLink>

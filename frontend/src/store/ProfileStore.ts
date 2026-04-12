@@ -8,7 +8,8 @@ interface Profile {
     first_name: string | null;
     last_name: string | null;
     role: string | null
-    last_login: Date | null;
+    last_login: string | null;
+    created_at: string;
 }
 
 interface ProfileState {
@@ -33,7 +34,7 @@ export const useProfileStore = create< ProfileState> ((set) => ({
     
         try {
           const res = await axios.get("/user/profile");
-          const data = res.data;
+          const data = res.data.user;
     
           console.log("🟢 fetchProfile: backend response", data);
     
@@ -44,7 +45,8 @@ export const useProfileStore = create< ProfileState> ((set) => ({
               first_name: data.first_name,
               last_name: data.last_name,
               role: data.role,
-              last_login: data.last_login ? new Date(data.last_login) : null,
+              last_login: data.last_login ,
+              created_at: data.created_at
             },
             profileLoading: false,
           });

@@ -1,6 +1,6 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 import { Loader } from "lucide-react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import LandingPage from "./pages/LandingPage";
 import Navbar from "./components/LandingPage/Navbar";
 import SignUpPage from "./pages/SignUpPage";
@@ -10,6 +10,34 @@ import AuthListener from "./hooks/AuthListener";
 import Dashboard from "./pages/DashboardPages/Dashboard";
 import { useAuthStore } from "./store/AuthStore";
 import Topbar from "./components/Dashboard/Topbar";
+import type React from "react";
+import History from "./pages/DashboardPages/History";
+
+interface RouteProps {
+  children: React.ReactNode;
+}
+
+const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
+  const { user, isLoading } = useAuthStore();
+
+  if (isLoading) return null; // Wait for Clerk to initialize
+
+  try {
+    if (!user) {
+      return  toast.error("Sign in to view this page.")
+    }
+  } catch (error) {
+    console.log(error)
+  } finally {
+    if (!user) {
+      return <Navigate to="/dashboard" replace />;
+    }
+  }
+
+
+  return <>{children}</>;
+};
+
 
 function App() {
   const { isLoading, user } = useAuthStore();
@@ -31,6 +59,7 @@ function App() {
         <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/dashboard" element={<><Topbar /><Dashboard /></>} />
+        <Route path="/dashboard/history" element={<ProtectedRoute><Topbar /><History /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster
