@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import { useAnalyzeStore } from "../../store/AnalyzeStore";
 import toast from "react-hot-toast";
 import AnalysisLoader from "../../components/Dashboard/AnalysisLoader";
-import { Check, FileText, Upload, X } from "lucide-react";
+import { Check, FileText, Loader, Upload, X } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { handleCopy, handleExportPDF } from "../../lib/actions";
+import { useHistoryStore } from "../../store/HistoryStore";
+import { contractIcon, contractIconClass, formatAnalysisTime, redflagsCheckClass, redflagsCheckText, tips } from "../../constants";
+import { useAuthStore } from "../../store/AuthStore";
 
 const btn = "text-[0.75rem] py-1 px-3 rounded-xl font-semibold cursor-pointer transition-all"
 const title = "text-gray-400 font-semibold tracking-wide text-[0.7rem]"
@@ -17,6 +20,9 @@ export default function Dashboard(){
     const [activeTab, setActiveTab] = useState("paste");
     const [text, setText] = useState("");
     const [droppedFile, setDroppedFile] = useState<File | null>(null);
+    const { history, historyLoading, fetchHistory } = useHistoryStore()
+
+    const { user } = useAuthStore()
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: {
@@ -87,6 +93,10 @@ export default function Dashboard(){
             console.error("Error in handleSubmit", err);
         }
     };
+
+    useEffect (() => {
+        fetchHistory()
+    }, [] )
 
     return(
         <section>
@@ -180,7 +190,7 @@ export default function Dashboard(){
                                     <div className="flex justify-between items-center font-cabinet px-5">
                                         <span className="flex items-center gap-3 tracking-tight font-semibold">
                                             <h1 className="text-gray-900">✦ Analysis Results</h1>
-                                            <p className="bg-[#e6fbf3] text-green rounded-xl p-1 px-2 text-sm">● Complete</p>
+                                            <p className="green text-green rounded-xl p-1 px-2 text-sm">● Complete</p>
                                         </span>
 
                                         <span className=" flex gap-3 text-[0.75rem] font-semibold text-gray-900">
@@ -302,6 +312,48 @@ export default function Dashboard(){
                             )
                         )}
                     </section>
+                </div>
+
+                <div className="col-span-1 px-3 shadow-sm">
+                    {/* recent doc */}
+                    { user ? (
+                        historyLoading ? (
+                            <div className="my-12 flex items-center justify-center">
+                                <Loader className="size-10 animate-spin text-gray-900" />
+                            </div>
+                        ) : (
+                            <div className="mt-4 font-cabinet">
+                                <h1 className="text-gray-500 font-semibold text-[0.83rem]">RECENT DOCUMENTS</h1>
+                                <div className=" mt-2">
+                                    {history?.slice(0,4).map((h) => (
+                                        <span className="flex gap-2  justify-between py-2 border-b border-gray-300 items-center" key={h.id}>
+                                            <p className={`${contractIconClass(h?.contract_type_short)} py-1 px-1.5 rounded-lg`}>{contractIcon(h?.contract_type_short)} </p>
+
+                                            <div className=" flex flex-col ">
+                                                <h6 className="text-gray-900 font-semibold text-[0.8rem] whitespace-nowrap overflow-hidden w-[100px] text-ellipsis">{h.contract_type}</h6>
+                                                <p className="small pt-1">{formatAnalysisTime(h.analyzed_at) }</p>
+                                            </div>
+
+                                            <p className={`${redflagsCheckClass(h.meta.flag_count)} whitespace-nowrap text-[0.75rem] font-semibold rounded-xl px-2 py-1`}>{redflagsCheckText(h.meta.flag_count) } </p>
+                                        </span>
+                                    )) }
+                                </div>
+                            </div> 
+                        )
+                    ) : "" }
+                     
+                    
+                    {/* tips */}
+                    <div className="mt-4 font-cabinet">
+                        <h1 className="text-gray-500 font-semibold text-[0.83rem]">💡 TIPS</h1>
+
+                        <div className="flex-col flex gap-3 items-center font-satoshi mt-3">
+                            { tips.map( (t) => (
+                                <p className="text-[0.8rem] text-gray-700  p-2 gray rounded-lg" key={t.id}>{t.text} </p>
+                            )) }
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

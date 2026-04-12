@@ -2,6 +2,7 @@ import { sql } from "../config/db.js";
 import { geminiModel } from "../config/gemini.config.js";
 import { buildPrompt, extractText } from "../lib/Analyze.lib.js";
 import { uploadBufferToCloudinary } from "../config/cloudinary.config.js";
+import { getAuthSession } from "../config/auth.js";
 
 export const analyzeDoc = async (req, res) => {
   try {
@@ -11,7 +12,6 @@ export const analyzeDoc = async (req, res) => {
     }
 
     let content;
-    let cloudinaryUrl = null;
 
     if (req.file) {
       const { originalname, mimetype, buffer } = req.file;
@@ -23,8 +23,7 @@ export const analyzeDoc = async (req, res) => {
 
       console.log("⏳ Starting Cloudinary upload...");
       const cloudinaryResult = await uploadBufferToCloudinary(buffer, originalname);
-      cloudinaryUrl = cloudinaryResult.secure_url;
-      console.log("☁️ Cloudinary upload done:", cloudinaryUrl);
+      console.log("☁️ Cloudinary upload done:");
     } 
 
     if( text ) {
@@ -53,7 +52,32 @@ export const analyzeDoc = async (req, res) => {
       }
     }
 
-    return res.status(200).json({ analysis, cloudinaryUrl }); // ✅ was missing
+    console.log("✅ Saving analysis to db")
+
+    // only save if logged in
+    const session = await getAuthSession(req.headers);
+    if (session) {
+      const userId = session.user.id;
+      const [saved] = await sql`
+        INSERT INTO analysis (
+          auth_id, contract_type, contract_type_short, contract_type_description,
+          ai_summary, key_points, red_flags, sections, meta
+        )
+        VALUES (
+          ${userId}, ${analysis.contract_type}, ${analysis.contract_type_short},
+          ${analysis.contract_type_description}, ${analysis.ai_summary},
+          ${JSON.stringify(analysis.key_points)}, ${JSON.stringify(analysis.red_flags)},
+          ${JSON.stringify(analysis.sections)}, ${JSON.stringify(analysis.meta)}
+        )
+        RETURNING id
+      `;
+      console.log("💾 Analysis saved, id:", saved.id);
+    } else {
+      console.log("👤 Guest user — analysis not saved");
+    }
+
+
+    return res.status(200).json({ analysis }); // ✅ was missing
   } catch (error) {
     console.error("Analyze error:", {
       message: error.message,

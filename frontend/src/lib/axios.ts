@@ -1,31 +1,14 @@
 import axiosLib from "axios";
 
 const axios = axiosLib.create({
- baseURL: import.meta.env.DEV
+  baseURL: import.meta.env.DEV
     ? "http://localhost:3001/api"
     : import.meta.env.VITE_BACKEND_URL,
+  withCredentials: true, // ← sends cookies automatically with every request
 });
 
-axios.interceptors.request.use(async (config) => {
+axios.interceptors.request.use((config) => {
   console.log("🌐 Making request to:", config.url);
-
-  const token = await window.Clerk?.session?.getToken();
-
-  console.log("🔑 Token exists:", !!token);
-
-  if (token) {
-    // Ensure headers exists AND is the correct type
-    if (!config.headers) {
-      console.error("no hwader")
-    }
-
-    // Now safely mutate
-    (config.headers as any).Authorization = `Bearer ${token}`;
-    console.log("✅ Authorization header set");
-  } else {
-    console.warn("⚠️ No token found!");
-  }
-
   return config;
 });
 

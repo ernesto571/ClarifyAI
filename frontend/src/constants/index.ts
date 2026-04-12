@@ -78,6 +78,92 @@ export const accountLinks = [
     {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/door-svgrepo-com_nynfte.svg", label:" Log Out", to: "/history"},
 ]
 
+export const contractIcon = (h:string) => {
+    if (h === "NDA") {
+        return "🔒"
+    }
+    if (h === "ToS") {
+        return "📋"
+    }
+    if (h === "Lease") {
+        return "🏠"
+    }
+    if (h === "EA") {
+        return "💼"
+    }
+    if (h === "FSA") {
+        return "⚡"
+    }
+    else {
+        return "📄"
+    }
+}
+
+export const contractIconClass = (h: string) => {
+    if (h === "NDA") {
+        return "bg-[#ffeed9] "
+    }
+    if (h === "ToS") {
+        return "bg-[#ffeaef] "
+    }
+    if (h === "Lease") {
+        return "bg-[#e9edff] "
+    }
+    if (h === "FSA") {
+        return "bg-[#f5f5f2] "
+    }
+    else {
+        return "bg-[#fff7cc] "
+    }
+}
+
+export const formatAnalysisTime = (date: string | Date) => {
+    const now = new Date();
+    const created = new Date(date);
+    const diffMs = now.getTime() - created.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    const diffWeeks = Math.floor(diffDays / 7);
+    const diffMonths = Math.floor(diffDays / 30);
+
+    if (diffMins < 1) return "Just now";
+    if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? "s" : ""} ago`;
+    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffWeeks === 1) return "Last week";
+    if (diffWeeks < 4) return `${diffWeeks} weeks ago`;
+    if (diffMonths === 1) return "Last month";
+    return `${diffMonths} months ago`;
+};
+
+export const redflagsCheckClass = (r:number) => {
+    if (r === 0) {
+        return "text-green green"
+    } else {
+        return "text-red bg-red"
+    }
+}
+
+export const redflagsCheckText = (r:number) => {
+    if (r === 0) {
+        return "Clear"
+    } 
+    if (r === 1) {
+        return "1 flag"
+    } 
+    else {
+        return `${r} flags`
+    }
+}
+
+export const tips = [
+    {id:"1", text:"📖 Switch to ELI5 mode if the summary still feels confusing."},
+    {id:"2", text:"📤 Export your results as PDF to share with a lawyer."},
+    {id:"3", text:"⚑ Red flags are things to question, not necessarily dealbreakers."}
+]
+
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },
     { id:"#how-it-works", title:"How It Works" },

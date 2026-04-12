@@ -3,11 +3,12 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { toNodeHandler } from "better-auth/node";
-import { auth } from "../config/auth.js";
+import { auth, requireAuth } from "../config/auth.js";
 import userRoutes from "../routes/user.route.js";
 import "dotenv/config";
 import { analyzeDoc } from "../controllers/Analyze.controller.js";
 import { uploadDocument } from "../config/cloudinary.config.js";
+import { fetchHistory } from "../controllers/History.controller.js";
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use(express.json());
 
 app.use("/api/user", userRoutes);
-app.use("/api/analyze", (req, res, next) => {
+app.post("/api/analyze", (req, res, next) => {
   uploadDocument.single("file")(req, res, (err) => {  // ← also change "resume" to "file" to match frontend
     if (err) {
       console.error("🔴 Multer error:", err.message);
@@ -34,6 +35,8 @@ app.use("/api/analyze", (req, res, next) => {
     next();
   });
 }, analyzeDoc);
+
+app.get("/api/history", requireAuth , fetchHistory)
 
 app.use((req, res, next) => {
   console.log(`📨 ${req.method} ${req.path}`);

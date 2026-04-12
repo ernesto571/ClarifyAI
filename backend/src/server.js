@@ -75,6 +75,26 @@ async function initDB() {
       )
     `;
     console.log("✅ Users table ready");
+
+    // analysis table
+    await sql`
+      CREATE TABLE IF NOT EXISTS analysis (
+        id SERIAL PRIMARY KEY,
+        auth_id TEXT REFERENCES "users"(auth_id) ON DELETE CASCADE,
+        is_saved BOOLEAN DEFAULT FALSE,
+        contract_type TEXT NOT NULL,
+        contract_type_short TEXT NOT NULL,
+        contract_type_description TEXT NOT NULL,
+        ai_summary TEXT NOT NULL,
+        key_points JSONB DEFAULT '[]',
+        red_flags JSONB DEFAULT '[]',
+        sections JSONB DEFAULT '[]',
+        meta JSONB NOT NULL,
+        analyzed_at TIMESTAMP DEFAULT NOW()        
+      )
+    `;
+    console.log("✅ Analysis table ready");
+
   } catch (error) {
     console.error("❌ Error initDB:", error);
     process.exit(1);

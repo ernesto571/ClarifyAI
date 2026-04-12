@@ -21,7 +21,7 @@ export const extractText = async (buffer, mimetype) => {
 
 const getToneInstructions = (tone) => {
     switch (tone) {
-      case "simple":
+      case "Simple":
         return {
           label: "Simple",
           summaryStyle: "Write in plain, everyday English. Avoid legal jargon. Short sentences. Accessible to someone with no legal background.",
@@ -29,7 +29,7 @@ const getToneInstructions = (tone) => {
           redFlagStyle: "Explain why it matters in plain language. No legalese.",
           sectionStyle: "2-3 plain-English sentences. Imagine explaining to a friend.",
         };
-      case "eli5":
+      case "ELI5":
         return {
           label: "ELI5",
           summaryStyle: "Explain as if talking to a 5-year-old or someone with zero knowledge of contracts. Use analogies, very short sentences, and the simplest possible words. Avoid ALL jargon.",
