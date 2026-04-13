@@ -73,9 +73,18 @@ export const toolLinks = [
     {id:"3", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/document-file-file-format-file-type-folder-format-svgrepo-com_eviumr.svg", label:"Saved Docs", to: "/dashboard/my-documents"}
 ]
 
+export const sidebarToolLinks = [
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/magnifying-glass-search-svgrepo-com_psybue.svg", label:"Analyze Doc" , to: "/dashboard", end: true},
+    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/card-index-dividers-svgrepo-com_mzdrvs.svg", label:"My History", to: "/dashboard/history"},
+    {id:"3", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775836804/document-file-file-format-file-type-folder-format-svgrepo-com_eviumr.svg", label:"Saved Docs", to: "/dashboard/my-documents"}
+]
+
+export const sidebarAccountLinks = [
+    {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/profile-user-svgrepo-com_albgc9.svg", label:"Profile" , to: "/dashboard/profile", end: true},
+]
+
 export const accountLinks = [
     {id:"1", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/profile-user-svgrepo-com_albgc9.svg", label:"Profile" , to: "/dashboard/profile", end: true},
-    {id:"2", icon:"https://res.cloudinary.com/dsljbxkfy/image/upload/v1775840353/door-svgrepo-com_nynfte.svg", label:" Log Out", to: "/log-out"},
 ]
 
 export const contractIcon = (h:string) => {
@@ -101,19 +110,19 @@ export const contractIcon = (h:string) => {
 
 export const contractIconClass = (h: string) => {
     if (h === "NDA") {
-        return "bg-[#ffeed9] "
+        return "bg-[#ffeed9] text-[#ffa538]"
     }
     if (h === "ToS") {
-        return "bg-[#ffeaef] "
+        return "bg-[#ffeaef] text-red"
     }
     if (h === "Lease") {
-        return "bg-[#e9edff] "
+        return "bg-[#e9edff] text-[#2b4bff] "
     }
     if (h === "FSA") {
-        return "bg-[#f5f5f2] "
+        return "bg-[#f5f5f2] text-[#555555] "
     }
     else {
-        return "bg-[#fff7cc] "
+        return "bg-[#fff7cc] text-[#947e29]"
     }
 }
 
@@ -129,7 +138,7 @@ export const formatAnalysisTime = (date: string | Date) => {
 
     if (diffMins < 1) return "Just now";
     if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? "s" : ""} ago`;
-    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+    if (diffHours < 24) return `Today , ${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
     if (diffDays === 1) return "Yesterday";
     if (diffDays < 7) return `${diffDays} days ago`;
     if (diffWeeks === 1) return "Last week";
@@ -163,6 +172,20 @@ export const tips = [
     {id:"2", text:"📤 Export your results as PDF to share with a lawyer."},
     {id:"3", text:"⚑ Red flags are things to question, not necessarily dealbreakers."}
 ]
+
+export const statusIcon = (s: string) => {
+    if (s === "standard") return "✓  STANDARD"
+    if (s === "good") return "✓  GOOD"
+    if (s === "caution") return "⚑  CAUTION"
+    if (s === "review") return "⚠  REVIEW"
+} 
+
+export const statusColor = (s: string) => {
+    if (s === "standard") return "text-green bg-[#e6fbf3]"
+    if (s === "good") return "text-[#1f6cc3] bg-[#e3f2fd]"
+    if (s === "caution") return "text-red bg-[#fff0f3]"
+    if (s === "review") return "text-[#e86115] bg-[#fff8e1]"
+}
 
 export const sidebarLinks2 = [
     { id:"#", title:"Home" },

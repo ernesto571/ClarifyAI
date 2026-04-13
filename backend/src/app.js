@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { toNodeHandler } from "better-auth/node";
 import { auth, requireAuth } from "../config/auth.js";
 import userRoutes from "../routes/user.route.js";
+import docRoutes from "../routes/saved_documents.route.js";
 import "dotenv/config";
 import { analyzeDoc } from "../controllers/Analyze.controller.js";
 import { uploadDocument } from "../config/cloudinary.config.js";
@@ -37,6 +38,7 @@ app.post("/api/analyze", (req, res, next) => {
 }, analyzeDoc);
 
 app.get("/api/history", requireAuth , fetchHistory)
+app.use("/api/documents", docRoutes)
 
 app.use((req, res, next) => {
   console.log(`📨 ${req.method} ${req.path}`);

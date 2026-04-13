@@ -12,6 +12,8 @@ import { useAuthStore } from "./store/AuthStore";
 import Topbar from "./components/Dashboard/Topbar";
 import type React from "react";
 import History from "./pages/DashboardPages/History";
+import SavedDocs from "./pages/DashboardPages/SavedDocs";
+import ProfilePage from "./pages/DashboardPages/ProfilePage";
 
 interface RouteProps {
   children: React.ReactNode;
@@ -20,20 +22,11 @@ interface RouteProps {
 const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
   const { user, isLoading } = useAuthStore();
 
-  if (isLoading) return null; // Wait for Clerk to initialize
-
-  try {
-    if (!user) {
-      return  toast.error("Sign in to view this page.")
-    }
-  } catch (error) {
-    console.log(error)
-  } finally {
-    if (!user) {
+  if (isLoading) return null;
+  if (!user) {
+      toast.error("Sign in to view this page.");
       return <Navigate to="/dashboard" replace />;
-    }
   }
-
 
   return <>{children}</>;
 };
@@ -45,7 +38,7 @@ function App() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Loader className="size-10 animate-spin text-[#9D174D]" />
+        <Loader className="size-10 animate-spin textprimary[#9D174D]" />
       </div>
     );
   }
@@ -60,6 +53,8 @@ function App() {
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/dashboard" element={<><Topbar /><Dashboard /></>} />
         <Route path="/dashboard/history" element={<ProtectedRoute><Topbar /><History /></ProtectedRoute>} />
+        <Route path="/dashboard/my-documents" element={<ProtectedRoute><Topbar /><SavedDocs /></ProtectedRoute>} />
+        <Route path="/dashboard/profile" element={<ProtectedRoute><Topbar /><ProfilePage /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster

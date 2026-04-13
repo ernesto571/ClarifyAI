@@ -90,7 +90,8 @@ async function initDB() {
         red_flags JSONB DEFAULT '[]',
         sections JSONB DEFAULT '[]',
         meta JSONB NOT NULL,
-        analyzed_at TIMESTAMP DEFAULT NOW()        
+        analyzed_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()      
       )
     `;
     console.log("✅ Analysis table ready");

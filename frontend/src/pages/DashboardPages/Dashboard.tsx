@@ -7,7 +7,7 @@ import { Check, FileText, Loader, Upload, X } from "lucide-react";
 import { useDropzone } from "react-dropzone";
 import { handleCopy, handleExportPDF } from "../../lib/actions";
 import { useHistoryStore } from "../../store/HistoryStore";
-import { contractIcon, contractIconClass, formatAnalysisTime, redflagsCheckClass, redflagsCheckText, tips } from "../../constants";
+import { contractIcon, contractIconClass, formatAnalysisTime, redflagsCheckClass, redflagsCheckText, statusColor, statusIcon, tips } from "../../constants";
 import { useAuthStore } from "../../store/AuthStore";
 
 const btn = "text-[0.75rem] py-1 px-3 rounded-xl font-semibold cursor-pointer transition-all"
@@ -60,19 +60,6 @@ export default function Dashboard(){
 
     const {formData, setFormData, analysisLoading, analyzeDoc, analysis} = useAnalyzeStore();
 
-    const statusIcon = (s: string) => {
-        if (s === "standard") return "✓  STANDARD"
-        if (s === "good") return "✓  GOOD"
-        if (s === "caution") return "⚑  CAUTION"
-        if (s === "review") return "⚠  REVIEW"
-    } 
-
-    const statusColor = (s: string) => {
-        if (s === "standard") return "text-green bg-[#e6fbf3]"
-        if (s === "good") return "text-[#1f6cc3] bg-[#e3f2fd]"
-        if (s === "caution") return "text-red bg-[#fff0f3]"
-        if (s === "review") return "text-[#e86115] bg-[#fff8e1]"
-    }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value)
@@ -100,11 +87,11 @@ export default function Dashboard(){
 
     return(
         <section>
-            <div className="grid grid-cols-6 h-[92vh]">
-                <div className="sidebar">
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 h-[92vh]">
+                <div className="hidden lg:grid sidebar">
                     <Sidebar />
                 </div>
-                <div className="col-span-4 gray flex-1 overflow-y-auto">
+                <div className=" md:col-span-2 lg:col-span-4 gray flex-1 overflow-y-auto">
                     <section className="my-6 w-[94%] mx-auto">
                         <div className="flex flex-col gap-1">
                             <span className="flex items-center gap-2">
@@ -170,7 +157,7 @@ export default function Dashboard(){
                                 </div>
                             )}
 
-                            <span className="flex px-6 justify-between py-3 items-center border-t border-gray-200">
+                            <span className="flex px-3 md:px-6 justify-between py-3 items-center border-t border-gray-200">
                                 {activeTab === "paste" ? (
                                     <p className={`text-sm font-medium ${text.length > 11000 ? "text-red-400" : "text-gray-400"}`}>{text.length} / 12,000 characters</p>
                                 ) : (
@@ -314,7 +301,7 @@ export default function Dashboard(){
                     </section>
                 </div>
 
-                <div className="col-span-1 px-3 shadow-sm">
+                <div className="hidden md:grid md:col-span-1 px-3 shadow-sm">
                     {/* recent doc */}
                     { user ? (
                         historyLoading ? (

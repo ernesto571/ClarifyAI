@@ -17,15 +17,17 @@ interface User {
   role: string;
   image?: string;
 }
+
 interface AuthState {
   user: User | null;
   isLoading: boolean;
   isGoogleLoading: boolean;
   isGithubLoading: boolean;
   error: string | null;
+  isInitialized: boolean;
   formData: FormData;
   signup: (data: FormData) => Promise<void>;
-  login: (data:FormData) => Promise<void>;
+  login: (data: FormData) => Promise<void>;
   logout: () => Promise<void>;
   fetchProfile: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
@@ -44,81 +46,75 @@ const initialFormData: FormData = {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isLoading: false,
       formData: initialFormData,
       isGoogleLoading: false,
       isGithubLoading: false,
+      isInitialized: false,
       error: null,
 
-      // signup
       signup: async (data) => {
         set({ isLoading: true, error: null });
         try {
-          console.log("📤 Signup payload:", data); 
           const { error } = await signUp.email({
             email: data.email,
             password: data.password,
             name: `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim(),
-            role: data.role ?? "user" ,
+            role: data.role ?? "user",
           });
           if (error) {
-            console.error("❌ Signup error:", error.message);
             set({ error: error.message, isLoading: false });
             return;
           }
           const session = await getSession();
-          set({ user: (session.data?.user as User) ?? null, isLoading: false });
+          set({ user: (session.data?.user as User) ?? null, isLoading: false, isInitialized: true });
         } catch (err) {
-          console.error("❌ Signup unexpected error:", err);
           set({ error: "Signup failed. Please try again.", isLoading: false });
         }
       },
 
-      // login
       login: async (data) => {
         set({ isLoading: true, error: null });
         try {
-          console.log("📤 Login payload:", data);
-          const { data: authData, error } = await signIn.email({ 
+          const { data: authData, error } = await signIn.email({
             email: data.email,
             password: data.password,
           });
           if (error) {
-            console.error("❌ Login error:", error.message);
             set({ error: error.message, isLoading: false });
             return;
           }
-          set({ user: (authData?.user as User) ?? null, isLoading: false });
+          set({ user: (authData?.user as User) ?? null, isLoading: false, isInitialized: true });
         } catch (err) {
-          console.error("❌ Login unexpected error:", err);
           set({ error: "Login failed. Please try again.", isLoading: false });
         }
       },
 
-      // logout
       logout: async () => {
         set({ isLoading: true });
         try {
           await signOut();
-          set({ user: null, isLoading: false });
+          set({ user: null, isLoading: false, isInitialized: true });
         } catch (err) {
-          console.error("❌ Logout error:", err);
           set({ user: null, isLoading: false });
         }
       },
 
       fetchProfile: async () => {
+        const { isInitialized, isLoading } = get();
+        if (isInitialized || isLoading) return;
+
         set({ isLoading: true });
         try {
           const { data } = await getSession();
-          set({ user: (data?.user as User) || null, isLoading: false });
+          set({ user: (data?.user as User) || null, isInitialized: true, isLoading: false });
         } catch (err) {
-          console.error("❌ fetchProfile error:", err);
-          set({ user: null, isLoading: false });
+          set({ user: null, isInitialized: true, isLoading: false });
         }
       },
+
       loginWithGoogle: async () => {
         set({ isGoogleLoading: true, error: null });
         try {
@@ -126,15 +122,12 @@ export const useAuthStore = create<AuthState>()(
             provider: "google",
             callbackURL: `${window.location.origin}/auth/callback`,
           });
-          if (error) {
-            console.error("❌ Google login error:", error.message);
-            set({ error: error.message, isLoading: false });
-          }
+          if (error) set({ error: error.message, isGoogleLoading: false });
         } catch (err) {
-          console.error("❌ Google login unexpected error:", err);
-          set({ error: "Google login failed. Please try again.", isLoading: false });
+          set({ error: "Google login failed.", isGoogleLoading: false });
         }
       },
+
       loginWithGithub: async () => {
         set({ isGithubLoading: true, error: null });
         try {
@@ -142,26 +135,21 @@ export const useAuthStore = create<AuthState>()(
             provider: "github",
             callbackURL: `${window.location.origin}/auth/callback`,
           });
-          if (error) {
-            console.error("❌ GitHub login error:", error.message);
-            set({ error: error.message, isLoading: false });
-          }
+          if (error) set({ error: error.message, isGithubLoading: false });
         } catch (err) {
-          console.error("❌ GitHub login unexpected error:", err);
-          set({ error: "GitHub login failed. Please try again.", isLoading: false });
+          set({ error: "GitHub login failed.", isGithubLoading: false });
         }
       },
+
       clearError: () => set({ error: null }),
 
       setFormData: (data) => {
-        console.log("📝 setFormData:", data);
         set((state) => ({ formData: { ...state.formData, ...data } }));
       },
     }),
     {
       name: "auth-storage",
       partialize: (state) => ({ user: state.user }),
-    },
-    
+    }
   )
 );

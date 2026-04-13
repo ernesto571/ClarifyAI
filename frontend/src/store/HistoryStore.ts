@@ -18,7 +18,7 @@ interface History {
 }
 
 interface HistoryStore {
-    history: History[] | null;
+    history: History[] ;
     historyLoading: boolean;
     error: string | null;
     fetchHistory: () => Promise<void>;
@@ -43,7 +43,7 @@ export const useHistoryStore = create < HistoryStore >((set) => ({
             message: err.message,
           });
           set({ error: err.message, historyLoading: false });
-          toast.error("No Internet Connection.");
+          // toast.error(err.message);
         }
     }
 }))

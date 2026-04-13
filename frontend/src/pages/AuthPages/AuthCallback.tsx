@@ -16,5 +16,4 @@ export default function AuthCallback() {
     return <p>Authentication failed. Redirecting...</p>;
   }
 
-  return <p>Signing you in...</p>;
 }

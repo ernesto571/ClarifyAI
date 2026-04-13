@@ -1,10 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { accountLinks, toolLinks } from "../../constants";
 import { useAuthStore } from "../../store/AuthStore";
 
 export default function Sidebar (){
 
-    const { user } = useAuthStore()
+    const { user, logout } = useAuthStore()
+    const navigate = useNavigate()
+
+    const handleLogout = async() => {
+       try {
+            await logout()
+       } catch (error) {
+            console.error(error)
+       } finally {
+        navigate("/")
+       }
+    }
 
     const firstNameInitials = user?.name.split(" ")[0].slice(0,1)
     const lastNameInitials = user?.name.split(" ")[1].slice(0,1)
@@ -20,7 +31,7 @@ export default function Sidebar (){
                 <div className="my-2 flex flex-col gap-2">
                     { toolLinks.map( (t) => (
                         <NavLink to={t.to} end={t.end} key={t.id} className={({ isActive }) => `flex gap-2 w-full   py-2  text-[0.85rem]
-                        ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5"}`}>
+                        ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5 hover:bg-gray-50 hover:text-gray-900"}`}>
                             <img src={t.icon} alt="icon" className="w-[17px] "/>
                             <p> {t.label}</p>
                         </NavLink>
@@ -32,11 +43,15 @@ export default function Sidebar (){
                     <div className="my-2 flex flex-col gap-1.5">
                         { accountLinks.map( (t) => (
                             <NavLink to={t.to} key={t.id} end={t.end} className={({ isActive }) => `flex gap-2 w-full py-2  text-[0.85rem]
-                            ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5"}`}>
+                            ${isActive ? "text-gray-800 font-bold border-l-[5px] bg-[#fff9d6] border-[#ffd600] px-4  " : "text-gray-500 font-semibold px-5 hover:bg-gray-50 hover:text-gray-900"}`}>
                                 <img src={t.icon} alt="icon" className="w-[17px] "/>
                                 <p> {t.label}</p>
                             </NavLink>
                         )) }
+
+                        { user ? (
+                           <button onClick={handleLogout} className="py-2  text-[0.85rem] text-gray-500 font-semibold px-5 inline-flex gap-2 hover:text-gray-900">🚪 Log Out</button>
+                        ) :  ""}
                     </div>
                 </div>
                 </div>
@@ -51,7 +66,13 @@ export default function Sidebar (){
                             </span>
                         </span>
                     ) : (
-                        <p>Guest</p>
+                        <span className="flex gap-3 items-center">
+                            <p className="rounded-full bg-tet  px-2 py-1.5 text-primary font-bold text-[0.8rem]">GU </p>
+                            <span>
+                                <p className="text-sm text-gray-800 font-cabinet font-semibold">Guest </p>
+                                <p className="text-[0.75rem] text-gray-400 font-cabinet ">Free Plan</p>
+                            </span>
+                        </span>
                     ) }
 
                 </div>
